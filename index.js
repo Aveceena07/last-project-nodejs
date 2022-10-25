@@ -7,6 +7,7 @@ import router from "./routes/UserRouter.js";
 import bodyParser from "body-parser";
 import koneksi from "./config/Db.js";
 dotenv.config();
+// const koneksi = require("./config/database");
 const app = express();
 
 try {
@@ -27,13 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-const borrow = require ("./routes/BorrowsRouter.js");
+import borrow from "./routes/BorrowsRouter.js";
 app.use("/api/borrow", borrow);
-const invest = require ("./routes/InvestRouter.js");
+import invest from "./routes/InvestRouter.js";
 app.use("/api/invest", invest);
-const wallet = require ("./routes/WalletRouter.js");
+import wallet from "./routes/WalletRouter.js";
 app.use("/api/wallet", wallet);
-const user = require ("./routes/UserRouter.js");
+import user from "./routes/UserRouter.js";
 app.use("/api/user", user);
 
 

@@ -1,4 +1,4 @@
-const db = require("../models");
+import db from "../models/InvestModel.js";
 const Invest = db.Invest;
 
 // add Invest

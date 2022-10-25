@@ -1,5 +1,5 @@
-const db = require("../models");
-const Wallet = db.borrows;
+import db from "../models/BorrowsModel.js";
+const Borrows = db.borrows;
 
 // add borrows
 const addBorrows = async (req, res) => {

@@ -1,4 +1,4 @@
-const db = require("../models");
+import db from "../models/WalletModel.js";
 const Wallet = db.wallet;
 
 // add wallet

@@ -1,6 +1,6 @@
-const wallet = require("../controllers/WalletControllers");
+import wallet from "../controllers/WalletControllers.js";
 
-const router = require("express").Router();
+const router = express.Router();
 
 router.get("/", wallet.getAllWallet);
 router.post("/:id", wallet.addWallet);
