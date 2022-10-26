@@ -3,8 +3,8 @@ import db from "../config/Database.js";
  
 const { DataTypes } = Sequelize; 
  
-const Forgot = db.define( 
-  "forgot", 
+const Investcrowd = db.define( 
+  "investcrowd", 
   { 
     code: { 
       type: DataTypes.INTEGER, 
@@ -22,4 +22,4 @@ const Forgot = db.define(
   await db.sync(); 
 })(); 
  
-export default Forgot;
+export default Investcrowd;

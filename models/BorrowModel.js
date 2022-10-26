@@ -3,23 +3,41 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const Invest = db.define(
-  "invest",
+const borrow = db.define(
+  "borrow",
   {
+    title: {
+      type: DataTypes.TEXT,
+    },
+    descrip: {
+      type: DataTypes.TEXT,
+    },
+    category: {
+      type: DataTypes.TEXT,
+    },
     amount: {
       type: DataTypes.INTEGER,
     },
-    borrowuid: {
+    part: {
       type: DataTypes.INTEGER,
     },
-    useruid: {
+    timee: {
       type: DataTypes.INTEGER,
     },
-    investuid: {
+    userUid: {
+      type: DataTypes.INTEGER,
+    },
+    borrowUid: {
       type: DataTypes.INTEGER,
     },
     date: {
       type: DataTypes.DATE,
+    },
+    logo: {
+      type: DataTypes.TEXT,
+    },
+    collect: {
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -31,4 +49,4 @@ const Invest = db.define(
   await db.sync();
 })();
 
-export default Invest;
+export default borrow;

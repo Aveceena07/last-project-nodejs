@@ -1,13 +1,13 @@
+//library yang digunakan
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/Database.js";
-import router from "./routes/UserRouter.js";
+import router from "./routes/Users.js";
 import bodyParser from "body-parser";
 import koneksi from "./config/Db.js";
 dotenv.config();
-// const koneksi = require("./config/database");
 const app = express();
 
 try {
@@ -22,32 +22,26 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
+//lokasi router
+import borrow from "./routes/Borrow.js";
+app.use("/api/borrow", borrow);
+import invest from "./routes/Invest.js";
+app.use("/api/invest", invest);
+import wallet from "./routes/Wallet.js";
+app.use("/api/wallet", wallet);
+import user from "./routes/Users.js";
+app.use("/api/user", user);
+
 app.listen(5000, () => console.log("Server running at port 5000"));
 // set body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-import borrow from "./routes/BorrowsRouter.js";
-app.use("/api/borrow", borrow);
-import invest from "./routes/InvestRouter.js";
-app.use("/api/invest", invest);
-import wallet from "./routes/WalletRouter.js";
-app.use("/api/wallet", wallet);
-import user from "./routes/UserRouter.js";
-app.use("/api/user", user);
-
-
-const PORT = process.env.PORT || 2020;
-app.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`);
-});
-
-// create data / insert data
+// create data / insert data user
 app.post("/api/crowdinvest", (req, res) => {
   // buat variabel penampung data dan query sql
   const data = { ...req.body };
-  const querySql = "INSERT INTO users SET ?";
+  const querySql = "INSERT INTO user SET ?";
 
   // jalankan query
   koneksi.query(querySql, data, (err, rows, field) => {
@@ -63,7 +57,7 @@ app.post("/api/crowdinvest", (req, res) => {
   });
 });
 
-// read data / get data
+// read data / get data user
 app.get("/api/crowdinvest", (req, res) => {
   // buat query sql
   const querySql = "SELECT * FROM user";
@@ -80,12 +74,12 @@ app.get("/api/crowdinvest", (req, res) => {
   });
 });
 
-// update data
+// update data user
 app.put("/api/crowdinvest/:id", (req, res) => {
   // buat variabel penampung data dan query sql
   const data = { ...req.body };
-  const querySearch = "SELECT * FROM users WHERE id = ?";
-  const queryUpdate = "UPDATE users SET ? WHERE id = ?";
+  const querySearch = "SELECT * FROM user WHERE id = ?";
+  const queryUpdate = "UPDATE user SET ? WHERE id = ?";
 
   // jalankan query untuk melakukan pencarian data
   koneksi.query(querySearch, req.params.id, (err, rows, field) => {
@@ -116,11 +110,11 @@ app.put("/api/crowdinvest/:id", (req, res) => {
   });
 });
 
-// delete data
+// delete data user
 app.delete("/api/crowdinvest/:id", (req, res) => {
   // buat query sql untuk mencari data dan hapus
-  const querySearch = "SELECT * FROM users WHERE id = ?";
-  const queryDelete = "DELETE FROM users WHERE id = ?";
+  const querySearch = "SELECT * FROM user WHERE id = ?";
+  const queryDelete = "DELETE FROM user WHERE id = ?";
 
   // jalankan query untuk melakukan pencarian data
   koneksi.query(querySearch, req.params.id, (err, rows, field) => {
