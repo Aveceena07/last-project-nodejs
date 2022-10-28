@@ -11,9 +11,6 @@ const koneksi = mysql.createConnection({
 });
 
 //koneksi database
-koneksi.connect((err) => {
-  if (err) throw err;
-  console.log("mySql Connected...");
-});
+koneksi.connect();
 
 export default koneksi;
